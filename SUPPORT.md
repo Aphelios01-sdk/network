@@ -6,7 +6,7 @@
 - **Running a miner or validator** — start at [flop.finance/testnet](https://flop.finance/testnet/);
   [ask.flop.finance](https://ask.flop.finance) answers most setup questions from the docs.
 - **Access only an operator can grant** — an allowlist entry, operator quota, gateway allowance
-  or tailnet enrollment: open an [access request](https://github.com/flop-labs/network/issues/new?template=access.yml).
+  or private endpoint: open an [access request](https://github.com/flop-labs/network/issues/new?template=access.yml).
 - **Something broken** — open an [issue](https://github.com/flop-labs/network/issues/new/choose)
   with the matching form.
 - **Security** — never in public. See [SECURITY.md](SECURITY.md).

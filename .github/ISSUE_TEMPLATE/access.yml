@@ -1,12 +1,12 @@
 name: Access request
-description: Something only a FLOP operator can grant or remove — an allowlist entry, an operator quota, a gateway allowance, a tailnet enrollment.
+description: Something only a FLOP operator can grant or remove — an allowlist entry, an operator quota, a gateway allowance, a private endpoint.
 title: "access: "
 labels: ["status:triage", "type:question"]
 body:
   - type: markdown
     attributes:
       value: >-
-        This issue is public. Send only public values: addresses, hostnames, Tailscale logins.
+        This issue is public. Send only public values: addresses and hostnames.
         Never paste a seed, account.json, .env, keystore, private key, bearer or API key. Questions
         the docs answer go to [ask.flop.finance](https://ask.flop.finance); devnet miners need no
         request while automatic sponsorship has room.
@@ -17,9 +17,9 @@ body:
       options:
         - testnet miner sponsor allowlist entry
         - operator key quota (several miners)
-        - gateway allowance or Tailscale user approval
-        - private endpoint or tailnet enrollment
-        - remove a retired host's enrollment
+        - gateway allowance
+        - private endpoint
+        - remove a retired host's access
         - other
     validations:
       required: true
@@ -37,8 +37,8 @@ body:
     attributes:
       label: Public identifiers
       description: >-
-        The SS58 address (miner account or operator key), hostname or DNS name, or Tailscale login
-        the request is for.
+        The SS58 address (miner account or operator key), or hostname or DNS name the request
+        is for.
     validations:
       required: true
   - type: textarea
