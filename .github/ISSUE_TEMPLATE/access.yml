@@ -9,13 +9,18 @@ body:
         This issue is public. Send only public values: addresses and hostnames.
         Never paste a seed, account.json, .env, keystore, private key, bearer or API key. Questions
         the docs answer go to [ask.flop.finance](https://ask.flop.finance); devnet miners need no
-        request while automatic sponsorship has room.
+        request while automatic sponsorship has room. If automatic sponsorship is full, request
+        devnet miner sponsorship here; an operator quota is a separate request for several miners.
+        If private proof is needed, an operator will provide a permitted private channel; do not
+        post proof or credentials here.
   - type: dropdown
     id: request
     attributes:
       label: Request
       options:
+        - devnet miner sponsorship (automatic sponsorship full)
         - testnet miner sponsor allowlist entry
+        - validator access
         - operator key quota (several miners)
         - gateway allowance
         - private endpoint

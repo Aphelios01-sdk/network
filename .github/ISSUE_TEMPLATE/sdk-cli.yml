@@ -1,0 +1,42 @@
+name: SDK or CLI bug
+description: A FLOP SDK or CLI behaves incorrectly.
+title: "sdk: "
+labels: ["status:triage", "type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        This issue is public. Do not include seeds, private keys, tokens, or credentials.
+        Report exploitable issues through the private security advisory instead.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - TypeScript SDK
+        - Python SDK
+        - CLI
+    validations:
+      required: true
+  - type: dropdown
+    id: network
+    attributes:
+      label: Network
+      options:
+        - devnet
+        - testnet
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Steps to reproduce, expected and actual results, and redacted errors.
+    validations:
+      required: true
