@@ -1,0 +1,62 @@
+name: Stage service release
+
+# Called from a source repository to stage public release notes here as a draft release.
+# The caller's repository must be listed for the service in .github/release-sources.txt.
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        description: Service name, for example rest-gateway
+        required: true
+        type: string
+      version:
+        description: Version with a leading v, for example v1.4.0
+        required: true
+        type: string
+      notes:
+        description: Public release notes in Markdown
+        required: true
+        type: string
+    secrets:
+      release-app-client-id:
+        required: true
+      release-app-private-key:
+        required: true
+
+permissions: {}
+
+# One group per release: a second request for the same release waits, and requests for
+# other releases run alongside it instead of replacing each other in a shared queue.
+concurrency:
+  group: stage-release-${{ inputs.service }}-${{ inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - id: token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.release-app-client-id }}
+          private-key: ${{ secrets.release-app-private-key }}
+          owner: flop-labs
+          repositories: network
+          permission-contents: write
+      # Always main, so a caller cannot bring its own script or allowlist.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: flop-labs/network
+          ref: main
+          token: ${{ steps.token.outputs.token }}
+          persist-credentials: false
+      - run: .github/scripts/stage-release.sh
+        env:
+          GH_TOKEN: ${{ steps.token.outputs.token }}
+          SERVICE: ${{ inputs.service }}
+          VERSION: ${{ inputs.version }}
+          NOTES: ${{ inputs.notes }}
+          SOURCE_REPO: ${{ github.repository }}
+          TARGET_REPO: flop-labs/network

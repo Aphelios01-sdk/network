@@ -1,0 +1,7 @@
+# One "<service> <owner/repo>" pair per line: which repository may publish which service.
+contracts flop-labs/flop-core
+client flop-labs/flop-core
+sdk flop-labs/flop-core
+pi flop-labs/flop-core
+cli flop-labs/flop-core
+python-sdk flop-labs/flop-core
