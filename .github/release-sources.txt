@@ -5,3 +5,8 @@ sdk flop-labs/flop-core
 pi flop-labs/flop-core
 cli flop-labs/flop-core
 python-sdk flop-labs/flop-core
+miner flop-labs/flop-core
+miner-worker flop-labs/flop-core
+miner-vllm-toploc flop-labs/flop-core
+node flop-labs/flop-core
+da-validator flop-labs/flop-core
