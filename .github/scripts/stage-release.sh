@@ -15,7 +15,7 @@ die() {
 sources="$(dirname "$0")/../release-sources.txt"
 
 [[ $SERVICE =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || die "bad service name: $SERVICE"
-[[ $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || die "bad version: $VERSION"
+[[ $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]] || die "bad version: $VERSION"
 grep -qxF "$SERVICE $SOURCE_REPO" "$sources" ||
   die "$SOURCE_REPO may not publish $SERVICE; add it to .github/release-sources.txt"
 [[ -n ${NOTES//[[:space:]]/} ]] || die "notes are empty"

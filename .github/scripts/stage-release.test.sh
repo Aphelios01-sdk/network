@@ -49,6 +49,7 @@ wrote() { grep -qE -- "$1" "$tmp/calls"; }
 
 first_run() { run && wrote '-X POST' && wrote '"draft": ?true' && wrote 'commit123' && ! wrote '"sha"'; }
 pass 'first run creates a draft on its own commit' first_run
+VERSION=v1.4.0-rc-1 pass 'hyphenated prerelease creates a draft' first_run
 
 rerun() { FAKE_RELEASE=$'77\ttrue' FAKE_FILE_SHA=abc run && wrote 'releases/77' && wrote '"sha": ?"abc"' && ! wrote '-X POST'; }
 pass 'rerun updates the existing draft' rerun
@@ -62,6 +63,7 @@ FAKE_RELEASE=$'77\tfalse' pass 'published release is refused' refused
 SOURCE_REPO=flop-labs/other pass 'unlisted source is refused' refused
 SERVICE=other-service pass 'unlisted service is refused' refused
 VERSION=1.4.0 pass 'version without v is refused' refused
+VERSION=v1.4.0-rc/1 pass 'slash in prerelease is refused' refused
 NOTES='   ' pass 'blank notes are refused' refused
 NOTES='see flop-labs/flop-core#12' pass 'private repo link is refused' refused
 NOTES='edge at rpc.ts.flop.network' pass 'internal host is refused' refused

@@ -40,6 +40,9 @@ Public release notes for FLOP services are published as [releases](../../release
 `<service>/v<version>`, such as `rest-gateway/v1.4.0`. These releases carry notes only; their
 source archives contain this repository, not the service.
 
+Release staging also accepts prerelease versions such as `v1.4.0-rc-1`: prerelease
+identifiers may contain hyphens. The leading `v` is still required.
+
 - **GitHub account:** choose Watch → Custom → Releases on this repository. GitHub notifies you
   in its inbox, and by email if your notification settings allow it.
 - **Feed reader:** subscribe to [releases.atom](https://github.com/flop-labs/network/releases.atom).
