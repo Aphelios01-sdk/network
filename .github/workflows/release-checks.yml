@@ -1,0 +1,36 @@
+name: Release staging checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/scripts/stage-release.sh
+      - .github/scripts/stage-release.test.sh
+      - .github/workflows/release-checks.yml
+  pull_request:
+    paths:
+      - .github/scripts/stage-release.sh
+      - .github/scripts/stage-release.test.sh
+      - .github/workflows/release-checks.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Release staging regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check Bash syntax
+        run: bash -n .github/scripts/stage-release.sh .github/scripts/stage-release.test.sh
+      - name: Test draft release staging
+        run: bash .github/scripts/stage-release.test.sh

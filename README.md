@@ -57,6 +57,11 @@ releases, so watch that repository, add its
 [releases.atom](https://github.com/flop-labs/technocore-chat/releases.atom) to a feed reader, or run
 `/github subscribe flop-labs/technocore-chat releases` in Slack.
 
+Changes to the release staging scripts are checked by the **Release staging checks**
+workflow on matching pull requests, pushes to `main`, or manual dispatch. It runs Bash
+syntax checks and `.github/scripts/stage-release.test.sh` with a fake `gh`, without
+release credentials or publishing a release.
+
 ## Links
 
 - [flop.finance](https://flop.finance) — project home
